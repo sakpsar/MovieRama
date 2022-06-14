@@ -1,0 +1,13 @@
+.card {
+    border-style: solid;
+    margin: 5px;
+    padding: 5px;
+}
+
+.card-container {
+    width: 80%;
+}
+
+.main-movie-container {
+    display: flex;
+}

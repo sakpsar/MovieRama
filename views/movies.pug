@@ -1,0 +1,43 @@
+extends base
+
+block content
+    div
+        div Sort By:
+        a(href='/?sort=like') Likes
+        |  
+        a(href='/?sort=hate') Hates
+        | 
+        a(href='/') Date
+    
+    main.main-movie-container
+        .card-container
+            each movie in movies
+                .card
+                    .card__header
+                        h3= movie.title
+                    .card__details
+                        p
+                            span= `Posted by `
+                                a(href=`/movies/user/${movie.postedBy}`)=movie.user[0].name
+                            | 
+                            span= movie.createdAt
+                        p=movie.description
+                        p
+                            if user && movie.usersVote && !movie.usersVote[0] && String(user._id) != movie.postedBy
+                                button.like--btn(data-vote-object={userId: user._id, movieId:movie._id, rating: 'like'})=`${movie.like} Likes`
+                                | 
+                                button.hate--btn(data-vote-object={userId: user._id, movieId:movie._id, rating: 'hate'})=`${movie.hate} Hates`
+                            else 
+                                span= `${movie.like} Likes`
+                                | 
+                                span= `${movie.hate} Hates`
+                        p
+                            if movie.usersVote && movie.usersVote[0]
+                                if movie.usersVote[0].rating==='like'
+                                    button.delete-vote--btn(data-voteId=movie.usersVote[0]._id)=`You like this movie | unlike`
+                                else
+                                    button.delete-vote--btn(data-voteId=movie.usersVote[0]._id)=`You hate this movie | unhate`
+        if user
+            .add-movie-container
+                a.nav__el(href='/submitMovie') New Movie
+            

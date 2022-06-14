@@ -1,0 +1,11 @@
+header.header
+  nav.nav.nav--movies
+    a.nav__el(href='/') MovieRama
+  nav.nav.nav--user
+    if user
+      a.nav__el.nav__el--logout Log out
+      | 
+      span= `Welcome back ${user.name}`
+    else
+      a.nav__el(href='/login') Log in
+      a.nav__el.nav__el--cta(href='/signup') Sign up

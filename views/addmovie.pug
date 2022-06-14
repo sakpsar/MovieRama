@@ -1,0 +1,15 @@
+extends base
+
+block content
+  main.main
+    .login-form
+      h2.heading-secondary.ma-bt-lg Add Movie
+      form.form.form--addmovie
+        .form__group
+            label.form__label(for='title') Title
+            input#title.form__input(type='text', required)
+        .form__group
+            label.form__label(for='description') Description
+            input#description.form__input(type='text', required)
+        .form__group
+          button.btn.btn--green Add movie
